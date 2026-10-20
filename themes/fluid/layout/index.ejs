@@ -12,7 +12,18 @@ sitePosts.forEach(function(post) {
   totalWords += strip_html(post.origin || post.content || '').replace(/[\s\r\n]/g, '').length
 })
 
-var siteStart = new Date(2026, 8, 3)
+// 建站日期从主题配置读取（_config.fluid.yml -> index.site_start_date），默认退回今天
+var siteStart = (function () {
+  var raw = theme.index.site_start_date
+  if (raw) {
+    var m = String(raw).match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)
+    if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
+    var d = new Date(raw)
+    if (!isNaN(d.getTime())) return d
+  }
+  return new Date()
+})()
+siteStart.setHours(0, 0, 0, 0)
 var today = new Date()
 today.setHours(0, 0, 0, 0)
 var heatmapStart = new Date(today)

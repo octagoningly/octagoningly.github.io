@@ -510,6 +510,10 @@ footer:
 # Home Page
 #---------------------------
 index:
+  # 建站日期，用于首页侧栏「建站天数」。格式 YYYY-MM-DD，改成你自己开始写博客的那天
+  # Site start date, used by the "days since launch" counter on the home sidebar. Format: YYYY-MM-DD
+  site_start_date: "2026-10-20"
+
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
   banner_img: /img/default.png

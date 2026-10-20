@@ -450,19 +450,33 @@ sup > a::before,
 .banner-text .typed-cursor {
   margin: 0 0.2rem;
 }
+.banner-text #subtitle {
+  font-size: 2.6rem;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+.banner-text .typed-cursor {
+  font-size: 2.6rem;
+}
+@media (max-width: 991px) {
+  .banner-text #subtitle,
+  .banner-text .typed-cursor {
+    font-size: 2.1rem;
+  }
+}
 @media (max-width: 767px) {
-  #subtitle,
-  .typed-cursor {
-    font-size: 1.5rem;
+  .banner-text #subtitle,
+  .banner-text .typed-cursor {
+    font-size: 1.8rem;
   }
 }
 @media (max-width: 575px) {
   .banner-text {
     font-size: 0.9rem;
   }
-  #subtitle,
-  .typed-cursor {
-    font-size: 1.35rem;
+  .banner-text #subtitle,
+  .banner-text .typed-cursor {
+    font-size: 1.5rem;
   }
 }
 #mobile-grid-menu {

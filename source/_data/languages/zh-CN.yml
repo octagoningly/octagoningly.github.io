@@ -48,6 +48,17 @@ post:
     wordcount: '%s 字'
     min2read: '%s 分钟'
     views: '{} 次'
+  copyright:
+    author: '作者'
+    posted: '发布于'
+    updated: '更新于'
+    licensed: '许可协议'
+    CC: 'CC - 知识共享许可协议'
+    BY: 'BY - 署名'
+    SA: 'SA - 相同方式共享'
+    NC: 'NC - 非商业性使用'
+    ND: 'ND - 禁止演绎'
+    ZERO: 'CC0 - 无版权'
 
 search:
   title: 搜索

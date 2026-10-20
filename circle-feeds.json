@@ -1,0 +1,10 @@
+// 朋友圈 RSS 订阅源列表（模板占位）
+//
+// 作用：抓取带 rss 字段的友链 RSS，在友链页展示「订阅朋友圈」动态卡片流。
+// 启用方法：
+//   1. 在 _config.fluid.yml 的 links.items 中给友链加上 rss 字段
+//   2. 把该友链按下面格式登记到本文件（name/link/rss/avatar 与 links.items 保持一致）
+//   3. 运行 python tools/circle_fetch.py 生成 source/circle/circle.json
+//      （GitHub Actions circle.yml 也会每日自动抓取并写回）
+// 全部清空时友链页只显示「订阅朋友圈」标题，不显示任何卡片，属正常现象。
+[]

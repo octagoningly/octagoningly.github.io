@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+.pnpm-store/
+public/
+.deploy*/
+_multiconfig.yml
+.playwright-cli/
+# 本地 npm 缓存（安装时指向项目内，避免写系统目录）
+.npm-cache/
+# WorkBuddy 项目记忆目录，不纳入 git
+.workbuddy/

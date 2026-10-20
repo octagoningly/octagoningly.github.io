@@ -1,0 +1,68 @@
+name: Circle Feed Update
+
+on:
+  schedule:
+    - cron: '17 22 * * *'        # 每天 UTC 22:17 更新（避开整点）
+  workflow_dispatch:            # 允许手动触发
+  push:
+    branches: [main]
+    paths:
+      - 'circle-feeds.json'
+      - 'tools/circle_fetch.py'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/circle.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GIT_AUTHOR_NAME: github-actions[bot]
+      GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+      GIT_COMMITTER_NAME: github-actions[bot]
+      GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}   # 需仓库 Settings→Deploy keys 添加对应公钥（写权限）
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install deps
+        run: |
+          if [ -f pnpm-lock.yaml ]; then npm i -g pnpm && pnpm install --frozen-lockfile; else npm install; fi
+
+      - name: Generate circle JSON
+        run: python tools/circle_fetch.py
+
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Hexo deploy
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new"
+          npx hexo generate -d
+          # 把累积归档 + 展示数据写回 main，跨运行持久化。
+          # circle-archive.json 与 source/circle/circle.json 都不在 push.paths 内，
+          # 不会触发本工作流二次运行；[skip ci] 双保险。
+          git add circle-archive.json source/circle/circle.json
+          if [ -z "$(git status --porcelain circle-archive.json source/circle/circle.json)" ]; then
+            echo "circle 数据无变化，跳过提交"
+          else
+            git commit -m "chore: 刷新友链朋友圈数据 [skip ci]"
+            git push origin HEAD:main || echo "warn: 数据写回 main 失败，下次运行会重试"
+          fi

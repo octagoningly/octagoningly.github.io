@@ -1,0 +1,196 @@
+<%
+if (theme.index.slogan.enable) {
+  page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+
+var sitePosts = site.posts.sort('-date').toArray()
+var totalWords = 0
+sitePosts.forEach(function(post) {
+  totalWords += strip_html(post.origin || post.content || '').replace(/[\s\r\n]/g, '').length
+})
+
+var siteStart = new Date(2026, 8, 3)
+var today = new Date()
+today.setHours(0, 0, 0, 0)
+var heatmapStart = new Date(today)
+heatmapStart.setDate(heatmapStart.getDate() - 125)
+var postCounts = {}
+sitePosts.forEach(function(post) {
+  var key = full_date(post.date, 'YYYY-MM-DD')
+  postCounts[key] = (postCounts[key] || 0) + 1
+})
+var heatmapDays = []
+for (var heatDate = new Date(heatmapStart); heatDate <= today; heatDate.setDate(heatDate.getDate() + 1)) {
+  var heatKey = heatDate.getFullYear() + '-' + String(heatDate.getMonth() + 1).padStart(2, '0') + '-' + String(heatDate.getDate()).padStart(2, '0')
+  heatmapDays.push({ date: heatKey, count: postCounts[heatKey] || 0 })
+}
+
+var categoryItems = site.categories.sort('length', -1).toArray()
+// 标签：次数多的优先，次数相同按首字母（中文按拼音）排；首页最多展示 5 个
+var tagLimit = 5
+var tagItems = site.tags.sort('length', -1).toArray().sort(function (a, b) {
+  var diff = b.posts.length - a.posts.length
+  if (diff !== 0) return diff
+  return a.name.localeCompare(b.name, 'zh-Hans-CN')
+})
+var topTags = tagItems.slice(0, tagLimit)
+var recentPosts = sitePosts.slice(0, 5)
+var elapsedDays = Math.max(1, Math.floor((today - siteStart) / 86400000) + 1)
+
+// 动态（Moments）：数据来自 source/_data/moments.yml，按时间倒序（新的在前）
+var allMoments = (site.data.moments || []).filter(function (m) {
+  return m && m.content;
+}).sort(function (a, b) {
+  return new Date(b.date || 0) - new Date(a.date || 0);
+})
+var sideMomentLimit = 3  // 侧栏「最新动态」条数
+var sideMoments = allMoments.slice(0, sideMomentLimit)
+// 侧栏空间有限，只展示纯文本单行；先把 Markdown 渲染成文本再压平空白，方便悬浮看原文
+function momentPlain(m) {
+  return strip_html(markdown(m.content)).replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim()
+}
+%>
+
+<h1 style="display: none"><%= config.title %></h1>
+<div class="home-with-sidebar">
+  <aside class="home-sidebar" aria-label="博客侧栏">
+    <section class="home-side-card home-profile-card">
+      <a class="home-profile-link" href="<%= url_for('/about/') %>" aria-label="前往关于页面" title="前往关于页面">
+        <img class="home-avatar" src="<%= url_for(theme.about.avatar || '/img/avatar.png') %>" alt="<%= theme.about.name || config.author %>">
+        <h2><%= theme.about.name || config.author %></h2>
+      </a>
+      <div class="home-social-links">
+        <% (theme.about.icons || []).forEach(function (ic) { %>
+        <a href="<%= ic.link %>" target="_blank" rel="noopener" aria-label="<%= ic.tip %>" title="<%= ic.tip %>"><i class="<%= ic.class %>" aria-hidden="true"></i></a>
+        <% }) %>
+        <a class="home-feed-link" href="<%= url_for('/atom.xml') %>" aria-label="RSS 订阅" title="RSS 订阅">
+          <svg class="home-rss-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="5" cy="19" r="2.2"></circle>
+            <path d="M4 12a8 8 0 0 1 8 8M4 5a15 15 0 0 1 15 15"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-side-card home-stats-card">
+      <div><strong><%= sitePosts.length %></strong><span>文章</span></div>
+      <div><strong><%= totalWords %></strong><span>字数</span></div>
+      <div><strong><%= elapsedDays %></strong><span>建站天数</span></div>
+    </section>
+
+    <section class="home-side-card home-heatmap-card">
+      <h3>发文记录</h3>
+      <div class="home-heatmap" aria-label="最近 126 天发文记录">
+        <% heatmapDays.forEach(function(day) { %>
+          <span class="home-heat-cell level-<%= Math.min(day.count, 4) %>" title="<%= day.date %>：<%= day.count %> 篇"></span>
+        <% }) %>
+      </div>
+      <div class="home-heatmap-legend"><span>少</span><i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i><span>多</span></div>
+    </section>
+
+    <% if (sideMoments.length) { %>
+    <section class="home-side-card home-moment-card">
+      <h3>最新动态</h3>
+      <div class="home-recent-list">
+        <% sideMoments.forEach(function (m) { %>
+          <a href="<%= url_for('/archives/') %>#moments" title="<%= momentPlain(m) %>">
+            <span><%= momentPlain(m) %></span>
+            <time datetime="<%= m.date ? full_date(m.date, 'YYYY-MM-DD') : '' %>"><%= m.date ? date(m.date, 'MM-DD') : '' %></time>
+          </a>
+        <% }) %>
+      </div>
+      <a class="home-moment-more" href="<%= url_for('/archives/') %>#moments">查看全部动态 →</a>
+    </section>
+    <% } %>
+
+    <div class="home-side-sticky">
+    <section class="home-side-card home-list-card">
+      <h3>分类</h3>
+      <div class="home-taxonomy-list">
+        <% categoryItems.slice(0, 3).forEach(function(category) { %>
+          <a href="<%= url_for(category.path) %>"><span><%= category.name %></span><em><%= category.posts.length %></em></a>
+        <% }) %>
+      </div>
+      <% if (categoryItems.length > 3) { %>
+        <div class="home-taxonomy-list home-taxonomy-more" hidden><% categoryItems.slice(3).forEach(function(category) { %><a href="<%= url_for(category.path) %>"><span><%= category.name %></span><em><%= category.posts.length %></em></a><% }) %></div>
+        <button type="button" class="home-more-toggle" aria-expanded="false" data-open-text="收起全部" data-close-text="展开全部（<%= categoryItems.length %>）">展开全部（<%= categoryItems.length %>）</button>
+      <% } %>
+    </section>
+
+    <section class="home-side-card home-list-card">
+      <h3>部分标签</h3>
+      <div class="home-taxonomy-list">
+        <% topTags.forEach(function(tag) { %>
+          <a href="<%= url_for(tag.path) %>"><span># <%= tag.name %></span><em><%= tag.posts.length %></em></a>
+        <% }) %>
+      </div>
+    </section>
+
+    <section class="home-side-card home-list-card">
+      <h3>最近文章</h3>
+      <div class="home-recent-list">
+        <% recentPosts.forEach(function(post) { %>
+          <a href="<%= url_for(post.path) %>"><span><%= post.title %></span><time datetime="<%= full_date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, 'MM-DD') %></time></a>
+        <% }) %>
+      </div>
+    </section>
+    </div>
+  </aside>
+
+  <div class="home-post-list">
+    <div class="archive-tabs-wrap" role="tablist" aria-label="首页视图切换">
+      <div class="archive-tabs">
+        <button type="button" class="archive-tab is-active" data-archive-tab="posts" data-tabs-group="home" role="tab" aria-selected="true">文章</button>
+        <button type="button" class="archive-tab" data-archive-tab="moments" data-tabs-group="home" role="tab" aria-selected="false">动态</button>
+      </div>
+    </div>
+
+    <div class="archive-panel" id="home-panel-posts">
+    <% (page.posts || site.posts).forEach(function (post) { %>
+      <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
+      <div class="row mx-auto index-card" data-post-url="<%= post_url %>" role="link" tabindex="0" aria-label="打开文章：<%= post.title %>">
+        <% if (index_img) { %>
+          <div class="col-12 col-md-4 m-auto index-img">
+            <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>"><img src="<%= url_for(index_img) %>" alt="<%= post.title %>"></a>
+          </div>
+        <% } %>
+        <article class="col-12 col-md-<%= index_img ? '8' : '12' %> mx-auto index-info">
+          <h2 class="index-header">
+            <% if (theme.index.post_sticky && theme.index.post_sticky.enable && post.sticky > 0) { %><i class="index-pin <%= theme.index.post_sticky && theme.index.post_sticky.icon %>" title="Pin on top"></i><% } %>
+            <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>"><%= post.title %></a>
+          </h2>
+          <% var excerpt = post.description || (theme.index.auto_excerpt.enable && !post.encrypt && post.content) || post.excerpt || '' %>
+<% var excerptHtml = excerpt.replace(/<figure\b[\s\S]*?<\/figure>/gi, '').replace(/<pre\b[\s\S]*?<\/pre>/gi, '').replace(/<\/?(?:h[1-6]|p|li|blockquote|div|br|hr)\b[^>]*>/gi, ' ') %>
+<% var excerptText = strip_html(excerptHtml).replace(/\r?\n/g, ' ').replace(/```[\s\S]*?```/g, '').replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[|#*_~`]/g, ' ').replace(/\s+/g, ' ').trim() %>
+          <a class="index-excerpt <%= index_img ? '' : 'index-excerpt__noimg' %>" href="<%= post_url %>" target="<%- theme.index.post_url_target %>"><div><%- excerptText.substring(0, 200) %></div></a>
+          <div class="index-btm post-metas">
+            <% if (theme.index.post_meta.date) { %><div class="post-meta mr-3"><i class="iconfont icon-date"></i><time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>" pubdate><%- date(post.date, config.date_format) %></time></div><% } %>
+            <% if (theme.index.post_meta.category && post.categories.length > 0) { %><div class="post-meta mr-3 d-flex align-items-center"><i class="iconfont icon-category"></i><% post.categories.each(function(category, index) { if (index === 0) { %><a href="<%= url_for(category.path) %>"><%= category.name %></a><% } }) %></div><% } %>
+            <% if (theme.index.post_meta.tag && post.tags.length > 0) { %><div class="post-meta"><i class="iconfont icon-tags"></i><% post.tags.each(function(tag){ %><a href="<%= url_for(tag.path) %>">#<%- tag.name %></a><% }) %></div><% } %>
+          </div>
+        </article>
+      </div>
+    <% }) %>
+    <% if (page.total > 1) { %>
+      <nav aria-label="navigation"><span class="pagination" id="pagination"><%- paginator({ prev_text: '<i class="iconfont icon-arrowleft"></i>', next_text: '<i class="iconfont icon-arrowright"></i>', mid_size: 2, end_size: 1, format: `${config.pagination_dir}/%d/#board`, escape: false }) %></span></nav>
+    <% } %>
+    </div>
+
+    <div class="archive-panel" id="home-panel-moments" hidden>
+      <div class="moments-timeline">
+        <% allMoments.forEach(function (m) { %>
+          <article class="moment-item">
+            <span class="moment-dot"></span>
+            <div class="moment-card">
+              <time class="moment-time"><%= m.date ? date(m.date, 'YYYY-MM-DD HH:mm') : '' %></time>
+              <div class="moment-content"><%- markdown(m.content) %></div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

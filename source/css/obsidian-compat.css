@@ -1,0 +1,53 @@
+/* Obsidian 风格提示框（由 Hexo Publisher 插件生成） */
+
+.hexo-callout {
+  --callout-color: #448aff;
+  margin: 1.1rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--callout-color);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--callout-color) 8%, transparent);
+}
+
+.hexo-callout-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--callout-color);
+  line-height: 1.5;
+}
+
+.hexo-callout-body > *:first-child {
+  margin-top: 0;
+}
+
+.hexo-callout-body > *:last-child {
+  margin-bottom: 0;
+}
+
+.hexo-callout-body p,
+.hexo-callout-body li {
+  line-height: 1.7;
+}
+
+.hexo-callout-body ul,
+.hexo-callout-body ol {
+  margin: 0.35rem 0;
+  padding-left: 1.4rem;
+}
+
+/* 深色模式下降一点背景亮度，避免过亮 */
+[data-user-color-scheme='dark'] .hexo-callout {
+  background: color-mix(in srgb, var(--callout-color) 14%, transparent);
+}
+
+/* Obsidian 高亮 ==文字== 转成的 <mark> */
+.markdown-body mark {
+  background: rgba(255, 213, 0, 0.35);
+  color: inherit;
+  padding: 0.05em 0.15em;
+  border-radius: 3px;
+}
+
+[data-user-color-scheme='dark'] .markdown-body mark {
+  background: rgba(255, 213, 0, 0.25);
+}

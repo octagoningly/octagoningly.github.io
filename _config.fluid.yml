@@ -246,6 +246,7 @@ custom_css:
   - /css/site-motion.css?v=18
   - /css/moments.css?v=3
   - /css/obsidian-compat.css?v=1
+  - /css/toc-sticky.css?v=1
 
 # 网页访问统计
 # Analysis of website visitors

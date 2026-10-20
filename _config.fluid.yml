@@ -531,7 +531,7 @@ index:
 
     # 为空则按 hexo config.subtitle 显示，支持列表格式来实现随机选择一行文字显示
     # If empty, text based on `subtitle` in hexo config, support list format to random selection of a row for display
-    text: "记录代码与生活，偶尔写点折腾笔记"
+    text: "sky is limit！"
 
     # 通过 API 接口作为首页副标题的内容，必须返回的是 JSON 格式，如果请求失败则按 text 字段显示，该功能必须先开启 typing 打字机功能
     # Subtitle of the homepage through the API, must be returned a JSON. If the request fails, it will be displayed in `text` value. This feature must first enable the typing animation
@@ -930,14 +930,13 @@ cusdis:
 # Based on GitHub Discussions, similar to Utterances
 # See: https://giscus.app/
 #
-# ↓↓↓ 模板占位：使用前请去 giscus.app 生成你自己的参数 ↓↓↓
-# 三项都可留空——未填写时评论框不会渲染，不会报错，但留言功能不工作。
-# 注意：repo 必须是公开仓库、已开启 Discussions、已安装 giscus App。
+# 评论数据存放在本仓库（octagoningly/octagoningly.github.io）的 Discussions 中。
+# 前提：仓库公开 + 已开启 Discussions + 已在该仓库安装 giscus App。
 giscus:
-  repo:
-  repo-id:
-  category:
-  category-id:
+  repo: octagoningly/octagoningly.github.io
+  repo-id: R_kgDOVQqPQA
+  category: Announcements
+  category-id: DIC_kwDOVQqPQM4DJJ2T
   theme-light: light
   theme-dark: dark
   mapping: pathname

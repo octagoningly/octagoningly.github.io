@@ -1,0 +1,1204 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/avatar.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="octagoningly">
+  <meta name="keywords" content="博客,技术,笔记,记录">
+  
+    <meta name="description" content="一、这是什么Cool Music 是一个面向 Android 的本地优先音乐播放器，基于开源项目 NeriPlayer（GPL-3.0）二次开发。 它的核心主张很简单：播放器应该服务于你自己的曲库和授权，而不是反过来。  本地歌单、收藏、最近播放、播放统计默认全部留在设备里； 需要同步时，写进你自己配置的 GitHub &#x2F; WebDAV 远端，不经过开发者服务器； 在线能力（搜索、取流、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cool Music v0.2.6 发布：本地优先的多源音乐播放器">
+<meta property="og:url" content="https://octagoningly.github.io/2026/11/08/cool-music-v0.2.6/index.html">
+<meta property="og:site_name" content="octagon">
+<meta property="og:description" content="一、这是什么Cool Music 是一个面向 Android 的本地优先音乐播放器，基于开源项目 NeriPlayer（GPL-3.0）二次开发。 它的核心主张很简单：播放器应该服务于你自己的曲库和授权，而不是反过来。  本地歌单、收藏、最近播放、播放统计默认全部留在设备里； 需要同步时，写进你自己配置的 GitHub &#x2F; WebDAV 远端，不经过开发者服务器； 在线能力（搜索、取流、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://octagoningly.github.io/img/coolmusic/home.png">
+<meta property="og:image" content="https://octagoningly.github.io/img/coolmusic/explore.png">
+<meta property="og:image" content="https://octagoningly.github.io/img/coolmusic/library.png">
+<meta property="og:image" content="https://octagoningly.github.io/img/coolmusic/nowplaying.png">
+<meta property="og:image" content="https://octagoningly.github.io/img/coolmusic/playlist.png">
+<meta property="og:image" content="https://octagoningly.github.io/img/coolmusic/settings.png">
+<meta property="article:published_time" content="2026-11-08T03:10:00.000Z">
+<meta property="article:modified_time" content="2026-11-08T03:07:01.982Z">
+<meta property="article:author" content="octagoningly">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Compose">
+<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="开源">
+<meta property="article:tag" content="音乐播放器">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://octagoningly.github.io/img/coolmusic/home.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Cool Music v0.2.6 发布：本地优先的多源音乐播放器 - octagon</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/home-sidebar.css?v=7.css">
+<link rel="stylesheet" href="/css/site-motion.css?v=18.css">
+<link rel="stylesheet" href="/css/moments.css?v=3.css">
+<link rel="stylesheet" href="/css/obsidian-compat.css?v=1.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"octagoningly.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="octagon" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>octagon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/guestbook/" target="_self">
+                <i class="nav-icon-guestbook"></i>
+                <span>留言</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/guestbook/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="nav-icon-guestbook"></i>
+                  <span>留言</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/links/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>友链</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+
+<div id="banner" class="banner" parallax=true
+     style="background: linear-gradient(180deg, #6f9bd8 0%, #c39bb4 52%, #eab487 100%);">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Cool Music v0.2.6 发布：本地优先的多源音乐播放器">Cool Music v0.2.6 发布：本地优先的多源音乐播放器</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-08 11:10" pubdate>
+          2026年11月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Cool Music v0.2.6 发布：本地优先的多源音乐播放器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="一、这是什么"><a href="#一、这是什么" class="headerlink" title="一、这是什么"></a>一、这是什么</h2><p><strong>Cool Music</strong> 是一个面向 Android 的<strong>本地优先</strong>音乐播放器，基于开源项目 <a target="_blank" rel="noopener" href="https://github.com/cwuom/NeriPlayer">NeriPlayer</a>（GPL-3.0）二次开发。</p>
+<p>它的核心主张很简单：<strong>播放器应该服务于你自己的曲库和授权，而不是反过来。</strong></p>
+<ul>
+<li>本地歌单、收藏、最近播放、播放统计默认全部留在设备里；</li>
+<li>需要同步时，写进<strong>你自己配置</strong>的 GitHub &#x2F; WebDAV 远端，不经过开发者服务器；</li>
+<li>在线能力（搜索、取流、歌词、封面）走<strong>你自己配置</strong>的音源接口或平台授权。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用包名</td>
+<td><code>moe.ouom.coolmusic</code>（与上游独立，可共存安装）</td>
+</tr>
+<tr>
+<td>技术基线</td>
+<td>Jetpack Compose + Media3，Kotlin &#x2F; Java 17</td>
+</tr>
+<tr>
+<td>最低版本</td>
+<td>Android 9（<code>minSdk 28</code>）</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>GNU GPL v3</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、下载安装"><a href="#二、下载安装" class="headerlink" title="二、下载安装"></a>二、下载安装</h2><p align="center">
+  <a href="/downloads/CoolMusic-v0.2.6-arm64.apk" style="display:inline-block;padding:12px 28px;border-radius:10px;background:#3F3F46;color:#fff;text-decoration:none;font-weight:600;">⬇ 下载 Cool Music v0.2.6（arm64，11.8 MB）</a>
+</p>
+
+<p>其他下载方式：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/octagoningly/Cool-Music/releases/latest">GitHub Releases</a>（推荐，含各 ABI 版本）</li>
+<li>站内直链：<code>https://octagoningly.github.io/downloads/CoolMusic-v0.2.6-arm64.apk</code></li>
+</ul>
+<blockquote>
+<p>[!TIP]<br>覆盖安装即可，<strong>无需卸载</strong>，登录与本地数据都会保留（同包名 + 同签名）。</p>
+</blockquote>
+<p><strong>设备选择</strong>：多数手机用 <code>arm64-v8a</code>；32 位老设备用 <code>armeabi-v7a</code>；模拟器选对应 x86 包（GitHub Releases 里都有）。</p>
+<hr>
+<h2 id="三、界面预览"><a href="#三、界面预览" class="headerlink" title="三、界面预览"></a>三、界面预览</h2><table>
+<thead>
+<tr>
+<th>首页</th>
+<th>探索</th>
+<th>媒体库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/coolmusic/home.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="/img/coolmusic/explore.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="/img/coolmusic/library.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>正在播放</th>
+<th>歌单详情</th>
+<th>设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/coolmusic/nowplaying.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="/img/coolmusic/playlist.png" srcset="/img/loading.gif" lazyload></td>
+<td><img src="/img/coolmusic/settings.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="四、这次-v0-2-6-修了什么"><a href="#四、这次-v0-2-6-修了什么" class="headerlink" title="四、这次 v0.2.6 修了什么"></a>四、这次 v0.2.6 修了什么</h2><p>这个版本没有堆新功能，主要是把之前积累的一批<strong>用户能直接感知到</strong>的体验问题清掉。</p>
+<h3 id="4-1-连点「下一首」不再转圈"><a href="#4-1-连点「下一首」不再转圈" class="headerlink" title="4.1 连点「下一首」不再转圈"></a>4.1 连点「下一首」不再转圈</h3><p>之前连续快点下一首时，播放键会变成转圈状态一会儿。原因是播放路径在等后台的预取任务，而预取是串行下载多首的批量任务，等它等过了 UI 的 1 秒转圈阈值。</p>
+<p>改了三处：</p>
+<ul>
+<li>播放路径不再阻塞等待预取任务（预取退化为纯旁路加速，命中就赚到）；</li>
+<li>连点切歌改为<strong>合并防抖</strong>，多次点击只真正解析一次；</li>
+<li>连点期间把预取窗口从 8 首缩到 2 首，不再越急越抢带宽。</li>
+</ul>
+<h3 id="4-2-进度条支持单击跳转"><a href="#4-2-进度条支持单击跳转" class="headerlink" title="4.2 进度条支持单击跳转"></a>4.2 进度条支持单击跳转</h3><p>播放页进度条以前只能拖动，单击无反应。现在单击可直接跳到所点位置，拖动行为完全保留，两者互不冲突。</p>
+<h3 id="4-3-缓存相关问题（这块用户感知最强）"><a href="#4-3-缓存相关问题（这块用户感知最强）" class="headerlink" title="4.3 缓存相关问题（这块用户感知最强）"></a>4.3 缓存相关问题（这块用户感知最强）</h3><ul>
+<li><strong>图片缓存迁到持久化目录</strong>：以前放在 <code>cacheDir</code>，系统清缓存或存储紧张时会整体删掉，导致第二次冷启动封面全部重新联网下载。现在和歌单数据一样持久化。</li>
+<li><strong>清理缓存时同步释放 Coil 实例</strong>：以前只删目录文件，进程内已打开的缓存实例不失效，会出现「清了却没清干净」。</li>
+<li><strong>列表封面增加加载占位</strong>：即使命中磁盘缓存，解码期间也是纯空白后突然淡入。现在有中性色占位，深浅色自适应。</li>
+<li><strong>媒体库在线歌单列表持久化</strong>：网易云 &#x2F; B站 &#x2F; YouTube &#x2F; QQ 的用户歌单列表以前只存内存，冷启动和弱网下直接空白。现在先展示磁盘缓存再后台刷新，换号自动隔离。</li>
+</ul>
+<h3 id="4-4-关屏再开启后误判离线"><a href="#4-4-关屏再开启后误判离线" class="headerlink" title="4.4 关屏再开启后误判离线"></a>4.4 关屏再开启后误判离线</h3><p>这个问题比较隐蔽：息屏 &#x2F; Doze &#x2F; 网络切换瞬间，<code>activeNetwork</code> 会短暂为 <code>null</code>，被判定为离线；而系统不一定会再补发 <code>onAvailable</code>，于是状态<strong>永久卡在离线</strong>，首页内容消失、探索页显示「网络不佳」，但实际网络是好的。</p>
+<p>修复：回到前台时无条件重查真实网络状态、网络丢失延迟确认、<code>activeNetwork</code> 为空时用底层传输类型兜底。同时离线时探索页改为<strong>展示磁盘缓存</strong>而不是整页空白。</p>
+<h3 id="4-5-媒体库与探索页的滚动抽动"><a href="#4-5-媒体库与探索页的滚动抽动" class="headerlink" title="4.5 媒体库与探索页的滚动抽动"></a>4.5 媒体库与探索页的滚动抽动</h3><p>探索页上滑出现「发现」栏、媒体库下滑收起 Tab 行时，底层列表会抽一下。根因是<strong>滚动补偿形成了自激反馈环</strong>：补偿滚动改写了列表偏移量，而显隐判定读的正是同一个偏移量，于是补偿被当成用户手势 → 再次触发补偿。</p>
+<p>修复方式是<strong>斩断反馈环</strong>：把探索页的「发现」栏改成网格的首个 item（与卡片共同滚动），媒体库的顶部留白改为恒定值，让列表滚动位置<strong>只由用户手势驱动</strong>。</p>
+<h3 id="4-6-设置与关于页"><a href="#4-6-设置与关于页" class="headerlink" title="4.6 设置与关于页"></a>4.6 设置与关于页</h3><ul>
+<li>进入设置二级页时，主页「设置」大标题立即隐藏，不再与返回栏叠成两层；</li>
+<li>关于页重做为<strong>可折叠大图标头部 + 流动渐变背景 + 开发者卡片</strong>（点开可就地展开 GitHub 链接）；</li>
+<li>播放页更多菜单放宽宽度，长文案不再折行。</li>
+</ul>
+<hr>
+<h2 id="五、核心能力一览"><a href="#五、核心能力一览" class="headerlink" title="五、核心能力一览"></a>五、核心能力一览</h2><h3 id="在线音源（本仓库的重点增强）"><a href="#在线音源（本仓库的重点增强）" class="headerlink" title="在线音源（本仓库的重点增强）"></a>在线音源（本仓库的重点增强）</h3><p>在上游网易云 &#x2F; Bilibili &#x2F; YouTube Music &#x2F; 本地之外，新增 <strong>LX Music 风格第三方在线音源</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>音源导入</td>
+<td>支持 LX Music <strong>JSON</strong> 与 <strong>JS 脚本</strong>，JS 由内置 <strong>QuickJS</strong> 执行</td>
+</tr>
+<tr>
+<td>优先播放</td>
+<td><code>设置 → 在线听歌</code>；播放页封面显示「<strong>在线音源</strong>」角标</td>
+</tr>
+<tr>
+<td>匹配与回落</td>
+<td>按歌名 &#x2F; 歌手 &#x2F; 时长打分，过滤伴奏与翻唱</td>
+</tr>
+<tr>
+<td>跨平台兜底</td>
+<td>主通道不可用时按 酷我 → 酷狗 → QQ 等搜原版取流</td>
+</tr>
+<tr>
+<td>每日自动验证</td>
+<td>GitHub Actions 每天搜索并验证候选音源，App 内可一键获取</td>
+</tr>
+<tr>
+<td>搜索多引擎</td>
+<td>探索页「在线」可选 QQ &#x2F; 酷狗 &#x2F; 酷我 &#x2F; 网易云，默认仅 QQ</td>
+</tr>
+</tbody></table>
+<h3 id="歌词与封面"><a href="#歌词与封面" class="headerlink" title="歌词与封面"></a>歌词与封面</h3><ul>
+<li>无歌词时从在线音源平台同步，也可从 QQ &#x2F; 酷狗公开接口匹配；</li>
+<li>识别网易云<strong>占位歌词</strong>，避免空壳歌词挡住真实歌词；</li>
+<li>逐行 &#x2F; 逐词（LRC、YRC、TTML）、翻译、音译、偏移、点击跳转、歌词卡片。</li>
+</ul>
+<h3 id="媒体库"><a href="#媒体库" class="headerlink" title="媒体库"></a>媒体库</h3><ul>
+<li>本地 &#x2F; 收藏 &#x2F; 网易云 &#x2F; 网易专辑 &#x2F; B站 &#x2F; YouTube Music &#x2F; QQ 多标签，支持自定义排序；</li>
+<li>外部歌单链接导入；</li>
+<li>已缓存歌曲独立入口，可离线播放。</li>
+</ul>
+<h3 id="上游保留的能力"><a href="#上游保留的能力" class="headerlink" title="上游保留的能力"></a>上游保留的能力</h3><p>多源播放（Media3）、本地媒体库、下载、播放音效（均衡器 &#x2F; 倍速 &#x2F; 响度）、<strong>USB 独占播放</strong>（UAC1.0 &#x2F; UAC2.0）、桌面小组件、启动器快捷方式、悬浮歌词、状态栏歌词、GitHub &#x2F; WebDAV 同步、播放统计、流量统计、<strong>一起听</strong>（可自建服务端）、崩溃日志与安全模式。</p>
+<hr>
+<h2 id="六、怎么配在线音源"><a href="#六、怎么配在线音源" class="headerlink" title="六、怎么配在线音源"></a>六、怎么配在线音源</h2><ol>
+<li><code>设置 → 在线听歌</code></li>
+<li>点「<strong>获取</strong>」读取 GitHub 每日验证清单，可查看、复制或直接导入通过自动验证的音源地址</li>
+<li>也可以手动导入 <strong>LX JSON &#x2F; JS</strong> 与你的服务地址</li>
+<li>按需开启<strong>优先播放</strong>、<strong>音源封面 &#x2F; 音源歌词</strong>，可用<strong>通道自检</strong></li>
+<li>探索页「<strong>在线</strong>」可免登录搜索单曲 &#x2F; 歌手 &#x2F; 歌单</li>
+</ol>
+<blockquote>
+<p>[!NOTE]<br>在线音源<strong>不会</strong>绕过平台账号权限或版权限制。本项目<strong>不内置、不维护</strong>任何公共曲库或第三方音源地址。</p>
+</blockquote>
+<hr>
+<h2 id="七、本地构建"><a href="#七、本地构建" class="headerlink" title="七、本地构建"></a>七、本地构建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> --recursive https://github.com/octagoningly/Cool-Music.git<br><span class="hljs-built_in">cd</span> Cool-Music<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>用 <strong>Android Studio</strong> 打开并同步依赖</li>
+<li>配置 <code>JAVA_HOME</code> → <strong>JDK 17</strong>，<code>ANDROID_HOME</code> → Android SDK</li>
+<li>Debug 安装（推荐脚本）：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell">.\scripts\<span class="hljs-built_in">install-debug</span>.ps1<br><span class="hljs-comment"># 无线： .\scripts\install-debug.ps1 -Wireless 192.168.1.100:5555</span><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Release 打包（需签名）：</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">.\gradlew.bat :app:assembleRelease<br></code></pre></td></tr></table></figure>
+
+<p>首次启动阅读免责声明并完成引导；设置页连点<strong>版本号 7 次</strong>开启开发者模式。</p>
+<hr>
+<h2 id="八、版本信息"><a href="#八、版本信息" class="headerlink" title="八、版本信息"></a>八、版本信息</h2><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本</td>
+<td>v0.2.6</td>
+</tr>
+<tr>
+<td>versionCode</td>
+<td><code>611081043</code></td>
+</tr>
+<tr>
+<td>versionName</td>
+<td><code>2b37ff1f.11081043</code></td>
+</tr>
+<tr>
+<td>包大小</td>
+<td>11.8 MB</td>
+</tr>
+<tr>
+<td>签名</td>
+<td><code>CN=Cool Music Local Release</code>（与历史版本一致）</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/octagoningly/Cool-Music/releases/tag/v0.2.6">GitHub Releases</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/octagoningly/Cool-Music/blob/main/%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95.md">完整更新记录</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/octagoningly/Cool-Music">源码仓库</a></li>
+</ul>
+<hr>
+<h2 id="九、免责声明"><a href="#九、免责声明" class="headerlink" title="九、免责声明"></a>九、免责声明</h2><blockquote>
+<p>[!WARNING]<br>本项目仅供学习与研究使用，请勿用于任何非法用途。<br>请只在你拥有权利、授权或第三方平台规则允许的范围内访问、播放或保存内容。<br>本项目不提供媒体内容、密钥，也不提供规避付费 &#x2F; DRM &#x2F; 地区限制的方案，不提供公共媒体代理或再分发服务。<br>在线音源依赖<strong>你自己配置</strong>的第三方接口 &#x2F; 脚本；会员或受限内容仍需遵循原平台规则与你的账号权限。<br>本项目及维护者不接受任何形式的赞助、捐赠或商业资助。</p>
+</blockquote>
+<p>代码来源于 <a target="_blank" rel="noopener" href="https://github.com/cwuom/NeriPlayer">cwuom&#x2F;NeriPlayer</a>，遵循 <strong>GNU GPL v3</strong>。Cool Music 与原作者无关，不对上游作任何担保。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83/" class="category-chain-item">项目发布</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android/" class="print-no-link">#Android</a>
+      
+        <a href="/tags/Kotlin/" class="print-no-link">#Kotlin</a>
+      
+        <a href="/tags/Compose/" class="print-no-link">#Compose</a>
+      
+        <a href="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" class="print-no-link">#音乐播放器</a>
+      
+        <a href="/tags/%E5%BC%80%E6%BA%90/" class="print-no-link">#开源</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Cool Music v0.2.6 发布：本地优先的多源音乐播放器</div>
+      <div>https://octagoningly.github.io/2026/11/08/cool-music-v0.2.6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>octagoningly</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/05/digital-logic/" title="数电笔记">
+                        <span class="hidden-mobile">数电笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"octagoningly/octagoningly.github.io","repo-id":"R_kgDOVQqPQA","category":"Announcements","category-id":"DIC_kwDOVQqPQM4DJJ2T","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN","strict":0};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <span style="font-size: 0.85em; opacity: .65;">首页云海动画改编自 Shadertoy 作品 <a href="https://www.shadertoy.com/view/Ndc3zl" target="_blank" rel="nofollow noopener">Up in the Cloud Sea</a>（原作 mdb，移植 Tyson Zhou，CC BY-NC-SA 3.0）</span> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        站点访问量：
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数量：
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-line').children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed)
+        .attr('aria-expanded', String(!collapsed))
+        .attr('aria-label', collapsed ? '展开子目录' : '收起子目录');
+      $childList.attr('aria-hidden', String(collapsed));
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        var $line = $li.children('.toc-line');
+        var $link = $li.children('.tocbot-link');
+
+        if ($line.length === 0 && $link.length > 0) {
+          $link.wrap('<div class="toc-line"></div>');
+          $line = $li.children('.toc-line');
+        }
+
+        $li.children('.toc-toggle').remove();
+        $line.children('.toc-toggle').remove();
+        if ($childList.length === 0) {
+          $line.addClass('toc-line-leaf');
+          return;
+        }
+
+        $line.removeClass('toc-line-leaf');
+        $line.prepend('<span class="toc-toggle toc-toggle-expanded" role="button" tabindex="0">›</span>');
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).closest('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('keydown.tocToggle').on('keydown.tocToggle', '.toc-toggle', function(e) {
+        if (e.key !== 'Enter' && e.key !== ' ') { return; }
+        e.preventDefault();
+        jQuery(this).trigger('click');
+      });
+      if (window.__tocToggleObserver) {
+        window.__tocToggleObserver.disconnect();
+      }
+      window.__tocToggleObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+          var $list = jQuery(mutation.target);
+          var $li = $list.parent('.toc-list-item');
+          if ($li.length === 0) { return; }
+          updateTocToggle($li, $list);
+        });
+      });
+      jQuery('#toc-body ol').each(function() {
+        window.__tocToggleObserver.observe(this, { attributes: true });
+      });
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/site-interactions.js?v=3.js"></script>
+<script src="/js/cloud-sea.js?v=9.js"></script>
+<script src="/js/soft-nav.js?v=5.js"></script>
+<script src="/js/moments.js?v=2.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">noscript_warning</div>
+  </noscript>
+</body>
+</html>

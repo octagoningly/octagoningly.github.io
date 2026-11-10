@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Obsidian 配置</title>
+    <link href="/2026/11/10/obsidian-config/"/>
+    <url>/2026/11/10/obsidian-config/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、图片附件管理"><a href="#一、图片附件管理" class="headerlink" title="一、图片附件管理"></a>一、图片附件管理</h2><p>（1）安装第三方插件 <strong>Custom Attachment Location</strong>，修改以下配置：</p><ol><li><strong>Move&#x2F;Renames → 附件重命名模式</strong>：选择「全部」</li><li><strong>Advanced → Markdown 链接格式</strong>：填入 <code>assets/&#123;&#123;noteFileName&#125;&#125;/&#123;&#123;generatedAttachmentFileName&#125;&#125;</code></li></ol><p>（2）安装第三方插件 <strong>Advanced Rename and Delete Handler</strong>，修改以下配置：</p><ol><li><strong>Should update file name aliases（是否更新文件名别名）</strong>：勾选</li><li><strong>Should rename attachment folder（是否重命名附件文件夹）</strong>：勾选</li><li><strong>Should rename attachment files（是否重命名附件文件）</strong>：勾选</li></ol><p>（3）在 Obsidian 自带设置 <strong>文件与链接</strong> 中：</p><ol><li><strong>使用 Wiki 链接</strong>：取消勾选</li><li><strong>内部链接类型</strong>：选择「基于当前笔记的相对路径」</li></ol><h2 id="二、使用技巧"><a href="#二、使用技巧" class="headerlink" title="二、使用技巧"></a>二、使用技巧</h2><ol><li>通过左侧边栏的「大纲」视图可快速浏览当前笔记的结构。</li><li>打开命令面板（左侧图标或快捷键 <code>Ctrl/Cmd + P</code>），搜索并执行命令 <code>Custom Attachment Location: Delete unused attachments in current note</code>，即可删除当前笔记中未被引用的多余附件图片。</li></ol><h2 id="三、笔记同步方式"><a href="#三、笔记同步方式" class="headerlink" title="三、笔记同步方式"></a>三、笔记同步方式</h2><p>（1）使用 <strong>Git</strong> 插件实现多端同步：</p><ol><li>先将本地笔记文件夹初始化为 Git 仓库。</li><li>创建 <code>.gitignore</code> 文件，写入以下内容（忽略工作区状态，避免多人&#x2F;多端之间产生冲突）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gitignore">.obsidian/workspace.json<br>.obsidian/workspace-mobile.json<br></code></pre></td></tr></table></figure></li><li>安装第三方 <strong>Git</strong> 插件，进行以下配置：<ul><li><strong>Auto commit-and-sync after stopping file edits</strong>：开启</li><li><strong>Auto commit-and-sync interval (minutes)</strong>：改为 <code>1</code></li><li><strong>Pull on startup</strong>：开启</li></ul></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Obsidian</tag>
+      
+      <tag>笔记</tag>
+      
+      <tag>效率工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Cool Music v0.2.6 发布：本地优先的多源音乐播放器</title>
     <link href="/2026/11/08/cool-music-v0.2.6/"/>
     <url>/2026/11/08/cool-music-v0.2.6/</url>
